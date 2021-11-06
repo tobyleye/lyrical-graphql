@@ -1,11 +1,13 @@
-import React  from "react";
+import React from "react";
 import AppHeader from "./components/app-header";
 
 export function App({ children }) {
   return (
-    <div className="mui-container">
+    <div>
       <AppHeader />
-      {children}
+      <main>
+        <div className="mui-container">{children}</div>
+      </main>
     </div>
   );
 }
