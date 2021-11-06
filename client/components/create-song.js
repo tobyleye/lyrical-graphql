@@ -15,7 +15,6 @@ class CreateSong extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.props);
     this.props
       .mutate({
         variables: {
