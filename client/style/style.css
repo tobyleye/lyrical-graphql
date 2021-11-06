@@ -4,6 +4,18 @@ button {
     background: transparent;
 }
 
+.app-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 42px;
+}
+
+.app-title {
+    margin: 0;
+    font-size: 22px;
+}
+
 .new-song-btn {
     display: inline-flex;
     align-items: center;

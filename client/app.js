@@ -1,9 +1,10 @@
 import React  from "react";
+import AppHeader from "./components/app-header";
 
 export function App({ children }) {
   return (
     <div className="mui-container">
-      <h3 className="mui--text-center">Lyrical</h3>
+      <AppHeader />
       {children}
     </div>
   );
