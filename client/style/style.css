@@ -1,0 +1,41 @@
+.new-song-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.new-song-btn-wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.song-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+
+}
+
+.song-list-item {
+    padding: 18px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.song-list-item p {
+    margin-bottom: 0;
+    font-size: 20px;
+}
+
+.delete-song-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.song-list-item:not(:last-child) {
+    border-bottom: 1px solid #ddd;
+}
