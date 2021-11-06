@@ -11,14 +11,12 @@ function DeleteSong(props) {
         id: props.songId,
       },
       refetchQueries: [{ query: fetchSongs }]
-    }).then(() => {
-      console.log("song deleted");
-    });
+    })
   };
 
   return (
-    <button onClick={deleteSong} className="delete-song-btn mui-btn mui-btn--danger">
-      <span className="material-icons">close</span>
+    <button onClick={deleteSong} className="delete-song-btn">
+      <span className="material-icons">delete</span>
     </button>
   );
 }

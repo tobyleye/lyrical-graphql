@@ -11,10 +11,10 @@ function SongList({ data }) {
       {loading ? (
         <p>loading..</p>
       ) : (
-        <ul className="song-list">
+        <ul className="collection">
           {songs.map((song) => (
-            <li className="song-list-item" key={song.id}>
-              <p>{song.title}</p>
+            <li className="collection-item" key={song.id}>
+              <Link to={`/songs/${song.id}`}>{song.title}</Link>
               <DeleteSong songId={song.id} />
             </li>
           ))}
@@ -23,7 +23,7 @@ function SongList({ data }) {
 
       <div className="new-song-btn-wrapper">
         <Link
-          to="/new-song"
+          to="/song/new"
           className="new-song-btn mui-btn mui-btn--fab mui-btn--primary"
         >
           <span className="material-icons">add</span>

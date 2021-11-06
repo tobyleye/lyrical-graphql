@@ -7,3 +7,12 @@ export const createSong =  gql`
     }
   }
 `;
+
+export const createSongLyric = gql`
+mutation addSongLyric($content:String! $songId:ID!) {
+    addLyricToSong(content:$content, songId:$songId) {
+      id,
+    }
+  }
+  
+`
