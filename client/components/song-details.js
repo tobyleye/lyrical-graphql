@@ -3,10 +3,11 @@ import { graphql } from "react-apollo";
 import { fetchSongDetails } from "../graphql/queries";
 import CreateSongLyric from "./create-song-lyric";
 import { Link } from "react-router"
-
+import LikeLyricButton from "./like-lyric-button";
 class SongDetails extends React.Component {
   render() {
     let { loading, song } = this.props.data;
+    let songId = this.props.params.id 
     return (
       <section>
         {loading ? (
@@ -22,14 +23,13 @@ class SongDetails extends React.Component {
               {song.lyrics.map((lyric) => (
                 <li key={lyric.id} className="collection-item">
                   <p>{lyric.content}</p>
-                  {/* <button>
-                    <span className="material-icons">like</span>
-                  </button> */}
+                  <LikeLyricButton lyricId={id} songId={songId}/>
+                  
                 </li>
               ))}
             </ul>
 
-            <CreateSongLyric songId={this.props.params.id} />
+            <CreateSongLyric songId={songId} />
           </div>
         )}
       </section>
