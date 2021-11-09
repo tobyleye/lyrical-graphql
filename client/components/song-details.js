@@ -37,8 +37,9 @@ class SongDetails extends React.Component {
                   song.lyrics.map((lyric) => (
                     <li key={lyric.id} className="collection-item">
                       <p>{lyric.content}</p>
-                      <button onClick={() => this.likeLyric(lyric.id)}>
-                        {lyric.likes} {lyric.likes < 2 ? "like" : "likes"}
+                      <button className="like-btn" onClick={() => this.likeLyric(lyric.id)} style={{ color: '#5454ff'}}>
+                        <span className="material-icons" style={{ marginRight: 4}}>thumb_up</span>
+                        {lyric.likes}
                       </button>
                     </li>
                   ))}
