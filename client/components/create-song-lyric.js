@@ -19,9 +19,6 @@ class CreateSongLyric extends React.Component {
         songId: this.props.songId,
         content: this.state.lyric,
       },
-      refetchQueries: [
-        { query: fetchSongDetails, variables: { id: this.props.songId } },
-      ],
     }).then(() => {
         this.setState({ lyric: ''})
     })

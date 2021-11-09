@@ -11,13 +11,9 @@ class SongDetails extends React.Component {
   }
 
   likeLyric(lyricId) {
-    console.log(this.props);
     if (lyricId) {
       this.props.mutate({
         variables: { lyricId },
-        refetchQueries: [
-          { query: fetchSongDetails, variables: { id: this.props.params.id } },
-        ],
       });
     }
   }
@@ -27,9 +23,7 @@ class SongDetails extends React.Component {
     const songId = this.props.params.id;
     return (
       <section>
-        {!song ? (
-          <div>loading..</div>
-        ) : (
+        {song && (
           <div>
             <header className="song-detail-header">
               <Link to="/" className="song-detail-back-btn">
