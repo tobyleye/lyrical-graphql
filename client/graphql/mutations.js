@@ -16,3 +16,11 @@ mutation addSongLyric($content:String! $songId:ID!) {
   }
   
 `
+
+export const likeLyric = gql`
+  mutation likeLyric($lyricId:ID!) {
+    likeLyric(id: $lyricId) {
+      id
+    }
+  }
+`

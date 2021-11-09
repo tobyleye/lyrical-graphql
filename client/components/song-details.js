@@ -2,31 +2,51 @@ import React from "react";
 import { graphql } from "react-apollo";
 import { fetchSongDetails } from "../graphql/queries";
 import CreateSongLyric from "./create-song-lyric";
-import { Link } from "react-router"
-import LikeLyricButton from "./like-lyric-button";
+import { Link } from "react-router";
+import { likeLyric } from "../graphql/mutations";
 class SongDetails extends React.Component {
+  constructor() {
+    super();
+    this.likeLyric = this.likeLyric.bind(this);
+  }
+
+  likeLyric(lyricId) {
+    console.log(this.props);
+    if (lyricId) {
+      this.props.mutate({
+        variables: { lyricId },
+        refetchQueries: [
+          { query: fetchSongDetails, variables: { id: this.props.params.id } },
+        ],
+      });
+    }
+  }
+
   render() {
-    let { loading, song } = this.props.data;
-    let songId = this.props.params.id 
+    let { song } = this.props.data;
+    const songId = this.props.params.id;
     return (
       <section>
-        {loading ? (
+        {!song ? (
           <div>loading..</div>
         ) : (
           <div>
-              <header className="song-detail-header">
-                  <Link to="/" className="song-detail-back-btn">Back</Link >
-            <h3 className="song-detail-title">{song.title}</h3>
-
-              </header>
+            <header className="song-detail-header">
+              <Link to="/" className="song-detail-back-btn">
+                Back
+              </Link>
+              <h3 className="song-detail-title">{song.title}</h3>
+            </header>
             <ul className="collection song-lyric-list">
-              {song.lyrics.map((lyric) => (
-                <li key={lyric.id} className="collection-item">
-                  <p>{lyric.content}</p>
-                  <LikeLyricButton lyricId={id} songId={songId}/>
-                  
-                </li>
-              ))}
+              {song.lyrics &&
+                song.lyrics.map((lyric) => (
+                  <li key={lyric.id} className="collection-item">
+                    <p>{lyric.content}</p>
+                    <button onClick={() => this.likeLyric(lyric.id)}>
+                      {lyric.likes} {lyric.likes < 2 ? 'like' : 'likes'}
+                    </button>
+                  </li>
+                ))}
             </ul>
 
             <CreateSongLyric songId={songId} />
@@ -38,5 +58,7 @@ class SongDetails extends React.Component {
 }
 
 export default graphql(fetchSongDetails, {
-  options: (props) => ({ variables: { id: props.params.id } }),
-})(SongDetails);
+  options: (props) => {
+    return { variables: { id: props.params.id } };
+  },
+})(graphql(likeLyric)(SongDetails));
